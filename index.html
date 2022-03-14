@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | [Challenge Name Here]</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Outfit:wght@300&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+
+      h1 {
+        position: relative;
+        z-index: 10;
+      }
+
+      .app {
+        height: 100vh;
+        width: 100vw;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+        font-family: "Montserrat", sans-serif;
+        /* background: linear-gradient(hsl(236, 72%, 79%), hsl(237, 63%, 64%)); */
+        background: hsl(240, 78%, 98%);
+      }
+
+      .toggle-div {
+        display: flex;
+      }
+
+      .top {
+        position: absolute;
+        top: 0;
+        left: 60%;
+        /* z-index: -1; */
+      }
+
+      .bottom {
+        position: absolute;
+        top: 70%;
+        left: 0;
+        /* z-index: -1; */
+        /* transform: rotate(45deg); */
+      }
+
+      .cards-container {
+        display: flex;
+        /* width: 85%; */
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        /* z-index: 5; */
+        /* background: hsl(240, 78%, 98%); */
+      }
+
+      /* .toggle {
+        opacity: 0;
+      } */
+
+      .toggle-div {
+        width: 80%;
+        height: 75px;
+        /* border: 1px solid black; */
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        /* left: 10%; */
+        /* background: hsl(240, 78%, 98%); */
+      }
+
+      .toggle {
+        position: relative;
+      }
+
+      .toggle::before {
+        height: 40px;
+        width: 100px;
+        border: 1px solid black;
+        position: absolute;
+        content: "";
+        background: white;
+        border-radius: 100px;
+        left: -45px;
+        top: -2px;
+      }
+
+      .toggle::after {
+        height: 35px;
+        width: 35px;
+        background: hsl(228, 45%, 44%);
+        border-radius: 50%;
+        position: absolute;
+        content: "";
+        top: 1px;
+        left: 18px;
+        cursor: pointer;
+        transition: 1s ease;
+      }
+
+      /* .toggle::after:hover {
+        background: orange;
+      } */
+
+      /* .toggle:checked {
+        color: purple;
+      } */
+
+      .toggle:checked::after {
+        /* background: purple; */
+        left: -37px;
+        transition: 1s ease;
+        background: white;
+      }
+
+      .toggle:checked::before {
+        /* background: purple; */
+        left: -40px;
+        transition: 1s ease;
+        background: hsl(228, 45%, 44%);
+      }
+
+      /*
+      .toggle::after {
+        height: 40px;
+        width: 150px;
+        border: 1px solid black;
+        position: absolute;
+        content: "whoah";
+      } */
+
+      @media screen and (max-width: 550px) {
+        .app {
+          display: block;
+          text-align: center;
+          overflow-y: auto;
+        }
+        .cards-container {
+          flex-direction: column;
+          width: 75%;
+          align-items: center;
+          margin: 0 auto;
+        }
+
+        .toggle-div {
+          margin: 0 auto;
+        }
+
+        h2 {
+          font-size: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <img class="top" src="./images/bg-top.svg" alt="img" />
+      <h1 class="title">Our Pricing</h1>
+
+      <div class="toggle-div">
+        <h2>Annually</h2>
+        <input type="checkbox" class="toggle" />
+        <h2>Monthly</h2>
+      </div>
+
+      <div class="cards-container">
+        <pricing-plan
+          title="Basic"
+          monthly="19.99"
+          yearly="199.99"
+          storage="500 GB"
+          users_allowed="2"
+          capacity="3"
+          taller="false"
+          handleChange="false"
+        ></pricing-plan>
+        <pricing-plan
+          title="Professional"
+          monthly="24.99"
+          yearly="249.99"
+          storage="1 TB"
+          users_allowed="5"
+          capacity="10"
+          taller="true"
+          handleChange="false"
+        ></pricing-plan>
+        <pricing-plan
+          title="Master"
+          monthly="39.99"
+          yearly="399.99"
+          storage="3 TB"
+          users_allowed="10"
+          capacity="20"
+          taller="false"
+          handleChange="false"
+        ></pricing-plan>
+      </div>
+
+      <div class="attribution">
+        Challenge by
+        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+          >Frontend Mentor</a
+        >. Coded by <a href="#">Your Name Here</a>.
+      </div>
+      <img class="bottom" src="./images/bg-bottom.svg" alt="img" />
+    </div>
+
+    <script>
+      var template = document.createElement("template");
+      template.innerHTML = `
+      <style>
+        .card{
+          height:325px;
+          width:225px;
+          border:1px solid black;
+          border-radius:5%;
+          box-shadow:2px 2px 8px gray;
+          background:white;
+          overflow:none;
+          z-index:3;
+          position:relative;
+          }
+
+          button{
+            width:90%;
+            padding:.35em;
+            text-transform:uppercase;
+            background:linear-gradient(hsl(236, 72%, 79%), hsl(237, 63%, 64%));
+            border:none;
+            border-radius:2px;
+            font-weight:900;
+            cursor:pointer;
+          }
+
+          .white{
+            background:white;
+            color: hsl(237, 63%, 64%);
+          }
+
+          .taller{
+            height:350px;
+            color:white;
+            text-shadow:1px 1px 1px black;
+            background:linear-gradient(hsl(236, 72%, 79%), hsl(237, 63%, 64%));
+          }
+
+          button:hover{
+            opacity:80%;
+            text-decoration:underline
+          }
+
+          h4{
+            border-bottom:1px solid lightgray;
+            width:90%;
+            position:relative;
+            left:5%;
+          }
+
+
+        </style>
+      <div class="card">
+        <h3 class="title"></h3>
+        <h1>$<span class="price"></span></h1>
+        <h4><span class="storage"></span>Storage</h4>
+        <h4><span class="users"></span> Users</h4>
+        <h4>Serve up to <span class="capacity"></span>GB</h4>
+        <button>Learn More</button>
+        </div>`;
+
+      class PricingPlan extends HTMLElement {
+        static get observedAttributes() {
+          return ["handlechange"];
+        }
+        get title() {
+          return this.getAttribute("title");
+        }
+
+        get monthly() {
+          return this.getAttribute("monthly");
+        }
+
+        get yearly() {
+          return this.getAttribute("yearly");
+        }
+
+        get storage() {
+          return this.getAttribute("storage");
+        }
+
+        get users_allowed() {
+          return this.getAttribute("users_allowed");
+        }
+
+        get capacity() {
+          return this.getAttribute("capacity");
+        }
+
+        get taller() {
+          return this.getAttribute("taller");
+        }
+
+        get handleChange() {
+          return this.getAttribute("handlechange");
+        }
+        constructor() {
+          super();
+          this.attachShadow({ mode: "open" });
+          this.shadowRoot.append(template.content.cloneNode(true));
+        }
+
+        connectedCallback() {
+          console.log("connectedcallback fired");
+          if (this.handleChange) {
+            console.log("something changed!");
+          }
+          if (this.taller == "true") {
+            this.shadowRoot.querySelector(".card").classList.add("taller");
+            this.shadowRoot
+              .querySelector(".card")
+              .querySelector("button")
+              .classList.add("white");
+          }
+          this.shadowRoot.querySelector(".title").innerHTML = this.title;
+          this.shadowRoot.querySelector(".price").innerHTML = this.monthly;
+          // this.shadowRoot.querySelector(".yearly").innerHTML = this.yearly;
+          this.shadowRoot.querySelector(".storage").innerHTML = this.storage;
+          this.shadowRoot.querySelector(".capacity").innerHTML = this.capacity;
+          this.shadowRoot.querySelector(".users").innerHTML =
+            this.users_allowed;
+        }
+
+        attributeChangedCallback(name, newValue, oldValue) {
+          console.log("attribute changed!!", this.handleChange);
+          if (this.handleChange == "true") {
+            this.shadowRoot.querySelector(".price").innerHTML = this.yearly;
+          } else {
+            this.shadowRoot.querySelector(".price").innerHTML = this.monthly;
+          }
+        }
+      }
+
+      customElements.define("pricing-plan", PricingPlan);
+
+      console.log(document.querySelector("input[type=checkbox]").checked);
+
+      document.querySelector("input[type=checkbox]").onclick = () => {
+        console.log("something happened!");
+        console.log(document.querySelectorAll("pricing-plan"));
+        document.querySelectorAll("pricing-plan").forEach((p) => {
+          console.log(p.getAttribute("handlechange"));
+          if (p.getAttribute("handlechange") == "true") {
+            p.setAttribute("handlechange", "false");
+          } else {
+            p.setAttribute("handlechange", "true");
+          }
+
+          console.log(p.getAttribute("handlechange"));
+        });
+      };
+    </script>
+  </body>
+</html>
